@@ -2,12 +2,15 @@ package com.example.ems.Service;
 
 import com.example.ems.Dto.EmployeeDto;
 import com.example.ems.Entity.Employee;
+import com.example.ems.Exception.ResourceNotFoundException;
 import com.example.ems.Mapper.EmployeeMapper;
 import com.example.ems.Repository.EmployeeRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 public class EmployeeServiceImp implements EmployeeService{
 
@@ -23,8 +26,12 @@ public class EmployeeServiceImp implements EmployeeService{
         return EmployeeMapper.mapToEmployeeDto(savedEmployee);
     }
 
-
-    public EmployeeDto getEmployee(Long id){
-
+    @Override
+    public EmployeeDto getEmployee(Long id) {
+        repository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException("Employee does not exist"));
+        return null;
     }
+
+
 }
