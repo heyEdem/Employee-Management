@@ -23,4 +23,8 @@ public class EmployeeServiceImp implements EmployeeService{
         return EmployeeMapper.mapToEmployeeDto(savedEmployee);
     }
 
+
+    public EmployeeDto getEmployee(Long id){
+
+    }
 }
