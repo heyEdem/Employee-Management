@@ -26,37 +26,47 @@
   </style>
 </head>
 <body>
-<div class="main">
-  <table class="table able-striped-columns" >
-    <thead>
-    <tr>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Email</th>
-      <th>Update</th>
-      <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="employee: ${employees}">
-      <td th:text="${employee.firstname}"></td>
-      <td th:text="${employee.lastname}"></td>
-      <td th:text="${employee.email}"></td>
-      <td>
-        <a th:href="@{/update/{id}(id=${employee.id})}" class="btn btn-warning">
-          <button class="btn btn-warning">Update</button>
-        </a>
-      </td>
-      <td>
-        <a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-danger">
-          <button class="btn btn-danger">Delete</button>
-        </a>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <a href="/" class="btn btn-link">Back</a>
+  <div class="card">
+    <div class="card-body">
+      <div class="main">
+        <h1>All My Employees</h1>
+        <table class="table able-striped-columns" >
+          <thead>
+          <p class="my-5">
+            <a href="/addEmployee" class="btn btn-success">
+              <i class="fas fa-solid fa-plus">Add Book</i>
+            </a>
+          </p>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="employee: ${employees}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+            <td>
+              <a th:href="@{/update/{id}(id=${employee.id})}" class="btn btn-warning">
+                <button class="btn btn-warning">Update</button>
+              </a>
+            </td>
+            <td>
+              <a th:href="@{/delete/{id}(id=${employee.id})}" class="btn btn-danger">
+                <button class="btn btn-danger">Delete</button>
+              </a>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        <a href="/" class="btn btn-link">Back</a>
 
+      </div>
+  </div>
 </div>
 </body>
 

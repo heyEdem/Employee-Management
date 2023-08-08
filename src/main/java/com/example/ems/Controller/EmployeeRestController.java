@@ -2,27 +2,32 @@ package com.example.ems.Controller;
 
 import com.example.ems.Dto.EmployeeDto;
 import com.example.ems.Entity.Employee;
-import com.example.ems.Service.EmployeeServiceImp;
+import com.example.ems.Service.EmployeeService;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+
 
 import java.util.List;
-import java.util.Map;
 
-@RestController
+
+@Controller
 public class EmployeeRestController {
 
-    private final EmployeeServiceImp service;
+    private final EmployeeService service;
 
-    public EmployeeRestController(EmployeeServiceImp service) {
+    public EmployeeRestController(EmployeeService service) {
         this.service = service;
     }
 
-    @GetMapping()
-    public String findAll(Model model){
-        List<EmployeeDto> all = service.getAllEmployees();
-        model.addAttribute("employees","all");
+    @GetMapping("/addEmployee")
+    public String addEmployee(Model model, EmployeeDto employeeDto){
+        return "form";
+    }
+    @GetMapping("/all")
+    public String findAll (Model model, EmployeeDto employee){
+        List<EmployeeDto> employees = service.getAllEmployees();
+        model.addAttribute("employees",employees);
         return "index";
     }
 }
