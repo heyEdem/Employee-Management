@@ -52,7 +52,9 @@ public class EmployeeServiceImp implements EmployeeService{
        employee.setLastName(employeeDto.getLastName());
        employee.setEmail(employeeDto.getEmail());
 
-        return EmployeeMapper.mapToEmployeeDto(employee);
+       Employee updated = repository.save(employee);
+
+        return EmployeeMapper.mapToEmployeeDto(updated);
     }
 
 }
