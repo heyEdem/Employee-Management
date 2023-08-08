@@ -3,6 +3,7 @@ package com.example.ems.Controller;
 import com.example.ems.Dto.EmployeeDto;
 import com.example.ems.Service.EmployeeService;
 import lombok.AllArgsConstructor;
+import lombok.Lombok;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,8 +35,15 @@ public class EmployeeController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<EmployeeDto> updateEmployee(@PathVariable("id") Long id, @RequestBody EmployeeDto employeeDto){
+    public ResponseEntity<EmployeeDto> updateEmployee(
+            @PathVariable("id") Long id, @RequestBody EmployeeDto employeeDto){
         EmployeeDto dto = service.updateEmployee(id, employeeDto);
         return ResponseEntity.ok(dto);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteEmployee( @PathVariable("id") Long id){
+        service.deleteEmployee(id);
+        return  ResponseEntity.ok("deleted successfully");
     }
 }
