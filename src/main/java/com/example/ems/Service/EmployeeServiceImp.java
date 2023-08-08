@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 @AllArgsConstructor
@@ -27,10 +29,16 @@ public class EmployeeServiceImp implements EmployeeService{
     }
 
     @Override
-    public EmployeeDto getEmployee(Long id) {
+    public EmployeeDto getEmployeeById (Long id) {
         Employee employee =  repository.findById(id)
                 .orElseThrow(()->new ResourceNotFoundException("Employee with id:"+ id +" does not exist"));
         return EmployeeMapper.mapToEmployeeDto(employee);
+    }
+
+    @Override
+    public EmployeeDto getAllEmployees() {
+        List<Employee> employees = repository.findAll();
+        return EmployeeMapper.mapToEmployeeDto(employees);
     }
 
 
