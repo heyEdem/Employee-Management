@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -45,8 +46,13 @@ public class EmployeeServiceImp implements EmployeeService{
 
     @Override
     public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto) {
+       Employee employee = repository.findById(id).orElseThrow(()->new ResourceNotFoundException("Employee with id "+ id +" not found"));
 
-        return null;
+       employee.setFirstName(employeeDto.getFirstName());
+       employee.setLastName(employeeDto.getLastName());
+       employee.setEmail(employeeDto.getEmail());
+
+        return EmployeeMapper.mapToEmployeeDto(employee);
     }
 
 }
