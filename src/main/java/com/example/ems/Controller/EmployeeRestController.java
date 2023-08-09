@@ -6,6 +6,7 @@ import com.example.ems.Service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -13,7 +14,6 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/app")
 public class EmployeeRestController {
 
     private final EmployeeService service;
@@ -33,9 +33,10 @@ public class EmployeeRestController {
         return "add-employee";
     }
 
+    @PostMapping("/add-employee")
     public String addEmployee(Model model, EmployeeDto employeeDto){
-        service.createEmployee(employeeDto);
-        model.addAttribute("employee",employeeDto);
-        return "redirect:/add";
+        EmployeeDto employee = service.createEmployee(employeeDto);
+        model.addAttribute("employee",employee);
+        return "redirect:/all";
     }
 }
