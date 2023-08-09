@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://usefontawesome.com/releases/v5.4.1/css/all.css"/>
     <style>
-        /*.container{*/
-        /*    max-width: 1200px;*/
-        /*    margin: auto;*/
-        /*    */
-        /*}*/
+        .container{
+            max-width: 1200px;
+            margin: auto;
+
+        }
         @media (max-width : 500px) {
             .container {
                 flex-direction: column;
@@ -30,21 +30,21 @@
             <div class="col-md-10">
                 <h1>All My Employees</h1>
 
-                <form action="#" th:action="@{/add-employee}" th:object="${employee}" method="post">
+                <form action="#" th:action="@{/addEmployee}" th:object="${employeeDto}" method="post">
 
                     <div class="row">
                         <div class="form-group col-md-8">
-                            <label for="firstName" class="col-form-label">Title</label>
-                            <input type="text" th:field="${employee.firstName}" class="form-control" id="firstName" placeholder="First Name"/>
+                            <label for="firstName" class="col-form-label">First Name</label>
+                            <input type="text" th:field="${employeeDto.firstName}" class="form-control" id="firstName" placeholder="First Name"/>
                         </div>
 
                         <div class="form-group col-md-8">
-                            <label for="lastName" class="col-form-label">Author</label>
-                            <input type="text" th:field="${employee.lastName}" class="form-control" id="lastName" placeholder="Last Name"/>
+                            <label for="lastName" class="col-form-label">Last Name</label>
+                            <input type="text" th:field="${employeeDto.lastName}" class="form-control" id="lastName" placeholder="Last Name"/>
                         </div>
                         <div class="form-group col-md-8">
-                            <label for="email" class="col-form-label">Description</label>
-                            <input type="text" th:field="${employee.email}" class="form-control" id="email" placeholder="Email"/>
+                            <label for="email" class="col-form-label">Email</label>
+                            <input type="text" th:field="${employeeDto.email}" class="form-control" id="email" placeholder="Email"/>
                         </div>
 
 <!--                        <div class="form-group col-md-8">-->
