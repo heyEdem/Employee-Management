@@ -6,12 +6,14 @@ import com.example.ems.Service.EmployeeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 import java.util.List;
 
 
 @Controller
+@RequestMapping("/app")
 public class EmployeeRestController {
 
     private final EmployeeService service;
@@ -29,5 +31,9 @@ public class EmployeeRestController {
         List<EmployeeDto> employees = service.getAllEmployees();
         model.addAttribute("employees",employees);
         return "index";
+    }
+    @GetMapping("/add")
+    public String addEmployee(Model model){
+        return "add-employee";
     }
 }
