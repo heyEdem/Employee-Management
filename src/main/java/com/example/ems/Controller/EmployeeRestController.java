@@ -22,19 +22,20 @@ public class EmployeeRestController {
         this.service = service;
     }
 
-    @GetMapping("/addEmployee")
-    public String addEmployee(Model model, EmployeeDto employeeDto){
-        return "form";
-    }
     @GetMapping("/all")
     public String findAll (Model model, EmployeeDto employee){
         List<EmployeeDto> employees = service.getAllEmployees();
         model.addAttribute("employees",employees);
         return "index";
     }
-    @GetMapping("/add")
+    @GetMapping("/add-employee")
     public String addEmployee(Model model){
         return "add-employee";
     }
 
+    public String addEmployee(Model model, EmployeeDto employeeDto){
+        service.createEmployee(employeeDto);
+        model.addAttribute("employee",employeeDto);
+        return "redirect:/add";
+    }
 }
