@@ -43,11 +43,12 @@ public class EmployeeRestController {
     }
 
     @GetMapping("/update/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id ,EmployeeDto dto){
-        return "add-employee";
+    public String showUpdateForm(@PathVariable("id") Long id, Model model){
+        model.addAttribute("employee",service.getEmployeeById(id));
+        return "update";
     }
 
-    @PutMapping("/update/{id}")
+    @PostMapping("/update/{id}")
     public String update(@PathVariable("id") Long id ,EmployeeDto dto){
         service.updateEmployee(id,dto);
         return "redirect:/";
