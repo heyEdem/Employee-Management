@@ -47,10 +47,9 @@ public class EmployeeRestController {
         model.addAttribute("employee",service.getEmployeeById(id));
         return "update";
     }
-
     @PostMapping("/update/{id}")
-    public String update(@PathVariable("id") Long id ,EmployeeDto dto){
-        service.updateEmployee(id,dto);
-        return "redirect:/";
+    public String update(@PathVariable("id") Long id , EmployeeDto dto){
+        service.updateEmployee(id, dto);
+        return "index";
     }
 }

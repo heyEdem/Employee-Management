@@ -26,7 +26,6 @@ public class EmployeeServiceImp implements EmployeeService{
         Employee employee =  EmployeeMapper.mapToEmployee(employeeDto);
 
         Employee savedEmployee = repository.save(employee);
-
         return EmployeeMapper.mapToEmployeeDto(savedEmployee);
     }
 
@@ -48,6 +47,7 @@ public class EmployeeServiceImp implements EmployeeService{
     public EmployeeDto updateEmployee(Long id, EmployeeDto employeeDto) {
        Employee employee = repository.findById(id).orElseThrow(()->new ResourceNotFoundException("Employee with id "+ id +" not found"));
 
+//       employee.setId(employeeDto.getId());
        employee.setFirstName(employeeDto.getFirstName());
        employee.setLastName(employeeDto.getLastName());
        employee.setEmail(employeeDto.getEmail());
