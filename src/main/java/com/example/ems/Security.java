@@ -17,7 +17,7 @@ public class Security {
                 .requestMatchers("/index").permitAll()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
-                .defaultSuccessUrl("index")
+                .defaultSuccessUrl("/")
                 .failureUrl("/login?error=true").permitAll()
                 .permitAll();
         return http.build();
