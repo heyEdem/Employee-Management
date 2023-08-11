@@ -10,11 +10,16 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class Security {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http){
-        http.csrf()
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
+        http
+                .csrf()
                 .disable()
-                .formLogin()
-                .loginPage("login")
+                .authorizeHttpRequests()
+                .requestMatchers("/index").permitAll()
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .defaultSuccessUrl("index")
+                .failureUrl("/login?error=true").permitAll()
                 .permitAll();
         return http.build();
     }
