@@ -54,4 +54,8 @@ public class EmployeeRestController {
     }
 
 
+    @GetMapping("/login")
+    public String getLogin(Model model){
+        return "login";
+    }
 }
